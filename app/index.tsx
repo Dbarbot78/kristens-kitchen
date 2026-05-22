@@ -69,7 +69,7 @@ async function openCamera() {
       const response =
         await fetch(
 
-          "http://192.168.12.152:3001/analyze-image",
+          "https://kristens-kitchen.onrender.com/analyze-image",
 
           {
             method: "POST",
