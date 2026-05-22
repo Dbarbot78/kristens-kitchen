@@ -14,8 +14,8 @@ import {
   View,
 } from "react-native";
 
-
 export default function HomeScreen() {
+
   const router = useRouter();
 
   const [image, setImage] =
@@ -26,10 +26,12 @@ export default function HomeScreen() {
 
   const [loading, setLoading] =
     useState(false);
-    const [preference, setPreference] =
-  useState("Healthy");
+
+  const [preference, setPreference] =
+    useState("Healthy");
+
   const [chefPersonality, setChefPersonality] =
-  useState("Cozy Bakery Chef");
+    useState("Cozy Bakery Chef");
 
   async function openCamera() {
 
@@ -69,14 +71,16 @@ export default function HomeScreen() {
 
         const formData =
           new FormData();
-         formData.append(
-  "preference",
-  preference
-); 
-formData.append(
-  "chefPersonality",
-  chefPersonality
-);
+
+        formData.append(
+          "preference",
+          preference
+        );
+
+        formData.append(
+          "chefPersonality",
+          chefPersonality
+        );
 
         formData.append("image", {
 
@@ -107,23 +111,27 @@ formData.append(
 
         const data =
           await response.json();
-        
-        setRecipe(data.recipe || data.ingredients);
-router.push({
-  pathname: "/recipe",
-  params: {
-    recipe:
-      data.recipe || data.ingredients,
-  },
-});
+
+        setRecipe(
+          data.recipe || data.ingredients
+        );
+
+        router.push({
+          pathname: "/recipe",
+          params: {
+            recipe:
+              data.recipe || data.ingredients,
+          },
+        });
+
       } catch (error) {
 
-       console.log(error);
+        console.log(error);
 
-Alert.alert(
-  "AI scan failed",
-  JSON.stringify(error)
-);
+        Alert.alert(
+          "AI scan failed",
+          JSON.stringify(error)
+        );
 
       }
 
@@ -146,83 +154,152 @@ Alert.alert(
       <Text style={styles.subtitle}>
         Make meals from what you already have.
       </Text>
+
       <View style={styles.filterRow}>
-<View style={styles.filterRow}>
 
-  <TouchableOpacity
-    style={styles.filterButton}
-    onPress={() =>
-      setChefPersonality(
-        "Cozy Bakery Chef"
-      )
-    }
-  >
-    <Text style={styles.filterText}>
-      🥐 Bakery
-    </Text>
-  </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.filterButton,
+            chefPersonality ===
+              "Cozy Bakery Chef" &&
+              styles.activeFilterButton
+          ]}
+          onPress={() =>
+            setChefPersonality(
+              "Cozy Bakery Chef"
+            )
+          }
+        >
+          <Text
+            style={[
+              styles.filterText,
+              chefPersonality ===
+                "Cozy Bakery Chef" &&
+                { color: "white" }
+            ]}
+          >
+            🥐 Bakery
+          </Text>
+        </TouchableOpacity>
 
-  <TouchableOpacity
-    style={styles.filterButton}
-    onPress={() =>
-      setChefPersonality(
-        "Cajun Grandma"
-      )
-    }
-  >
-    <Text style={styles.filterText}>
-      🔥 Cajun
-    </Text>
-  </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.filterButton,
+            chefPersonality ===
+              "Cajun Grandma" &&
+              styles.activeFilterButton
+          ]}
+          onPress={() =>
+            setChefPersonality(
+              "Cajun Grandma"
+            )
+          }
+        >
+          <Text
+            style={[
+              styles.filterText,
+              chefPersonality ===
+                "Cajun Grandma" &&
+                { color: "white" }
+            ]}
+          >
+            🔥 Cajun
+          </Text>
+        </TouchableOpacity>
 
-  <TouchableOpacity
-    style={styles.filterButton}
-    onPress={() =>
-      setChefPersonality(
-        "Gym Bro Chef"
-      )
-    }
-  >
-    <Text style={styles.filterText}>
-      💪 Gym
-    </Text>
-  </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.filterButton,
+            chefPersonality ===
+              "Gym Bro Chef" &&
+              styles.activeFilterButton
+          ]}
+          onPress={() =>
+            setChefPersonality(
+              "Gym Bro Chef"
+            )
+          }
+        >
+          <Text
+            style={[
+              styles.filterText,
+              chefPersonality ===
+                "Gym Bro Chef" &&
+                { color: "white" }
+            ]}
+          >
+            💪 Gym
+          </Text>
+        </TouchableOpacity>
 
-</View>
-  <TouchableOpacity
-    style={styles.filterButton}
-    onPress={() =>
-      setPreference("Healthy")
-    }
-  >
-    <Text style={styles.filterText}>
-      Healthy
-    </Text>
-  </TouchableOpacity>
+      </View>
 
-  <TouchableOpacity
-    style={styles.filterButton}
-    onPress={() =>
-      setPreference("High Protein")
-    }
-  >
-    <Text style={styles.filterText}>
-      Protein
-    </Text>
-  </TouchableOpacity>
+      <View style={styles.filterRow}>
 
-  <TouchableOpacity
-    style={styles.filterButton}
-    onPress={() =>
-      setPreference("Quick Meals")
-    }
-  >
-    <Text style={styles.filterText}>
-      Quick
-    </Text>
-  </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.filterButton,
+            preference === "Healthy" &&
+              styles.activeFilterButton
+          ]}
+          onPress={() =>
+            setPreference("Healthy")
+          }
+        >
+          <Text
+            style={[
+              styles.filterText,
+              preference === "Healthy" &&
+                { color: "white" }
+            ]}
+          >
+            Healthy
+          </Text>
+        </TouchableOpacity>
 
-</View>
+        <TouchableOpacity
+          style={[
+            styles.filterButton,
+            preference === "High Protein" &&
+              styles.activeFilterButton
+          ]}
+          onPress={() =>
+            setPreference("High Protein")
+          }
+        >
+          <Text
+            style={[
+              styles.filterText,
+              preference === "High Protein" &&
+                { color: "white" }
+            ]}
+          >
+            Protein
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.filterButton,
+            preference === "Quick Meals" &&
+              styles.activeFilterButton
+          ]}
+          onPress={() =>
+            setPreference("Quick Meals")
+          }
+        >
+          <Text
+            style={[
+              styles.filterText,
+              preference === "Quick Meals" &&
+                { color: "white" }
+            ]}
+          >
+            Quick
+          </Text>
+        </TouchableOpacity>
+
+      </View>
 
       <TouchableOpacity
         style={styles.button}
@@ -258,7 +335,7 @@ Alert.alert(
         <View style={styles.card}>
 
           <Text style={styles.cardTitle}>
-            🍳 AI Recipe
+            🥐 AI Recipe
           </Text>
 
           <Text style={styles.cardText}>
@@ -268,50 +345,6 @@ Alert.alert(
         </View>
 
       )}
-
-      <TouchableOpacity
-  style={styles.card}
-  onPress={() =>
-    Alert.alert(
-      "🍝 Quick Dinner",
-      "20 Minute Garlic Butter Pasta recipe coming soon!"
-    )
-  }
->
-
-  <Text style={styles.cardTitle}>
-    Quick Dinner
-  </Text>
-
-  <Text style={styles.cardText}>
-    20 Minute Garlic Butter Pasta
-  </Text>
-
-</TouchableOpacity>
-
-      <View style={styles.card}>
-
-        <Text style={styles.cardTitle}>
-          Healthy Option
-        </Text>
-
-        <Text style={styles.cardText}>
-          Grilled Chicken Rice Bowl
-        </Text>
-
-      </View>
-
-      <View style={styles.card}>
-
-        <Text style={styles.cardTitle}>
-          Beginner Friendly
-        </Text>
-
-        <Text style={styles.cardText}>
-          Easy Homemade Tacos
-        </Text>
-
-      </View>
 
     </ScrollView>
 
@@ -344,12 +377,37 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
 
+  filterRow: {
+    flexDirection: "row",
+    marginBottom: 20,
+    gap: 10,
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
+
+  filterButton: {
+    backgroundColor: "#DDEBDD",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+  },
+
+  activeFilterButton: {
+    backgroundColor: "#4D7C5A",
+  },
+
+  filterText: {
+    color: "#2E4A3D",
+    fontWeight: "600",
+  },
+
   button: {
     backgroundColor: "#4D7C5A",
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 20,
     marginBottom: 40,
+    marginTop: 20,
   },
 
   buttonText: {
@@ -384,21 +442,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#5F6F65",
   },
-  filterRow: {
-    flexDirection: "row",
-    marginBottom: 25,
-    gap: 10,
-  },
 
-  filterButton: {
-    backgroundColor: "#DDEBDD",
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-  },
-
-  filterText: {
-    color: "#2E4A3D",
-    fontWeight: "600",
-  },
 });
