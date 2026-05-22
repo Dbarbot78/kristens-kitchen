@@ -19,6 +19,7 @@ const openai = new OpenAI({
 });
 
 app.post(
+
   "/analyze-image",
 
   upload.single("image"),
@@ -51,7 +52,7 @@ app.post(
                   type: "text",
 
                   text:
-  `You are a professional chef AI.
+`You are a professional chef AI.
 
 Identify all ingredients visible in this food image.
 
@@ -71,25 +72,27 @@ Format the response clearly and cleanly for a mobile cooking app.`,
 
                   image_url: {
                     url:
-                      `data:image/jpeg;base64,${base64Image}`,
+`data:image/jpeg;base64,${base64Image}`,
                   },
+
                 },
 
               ],
+
             },
 
           ],
 
         });
 
-      const ingredients =
+      const recipe =
         response.choices[0]
           .message.content;
 
       fs.unlinkSync(imagePath);
 
       res.json({
-        ingredients,
+        recipe,
       });
 
     } catch (error) {
@@ -97,13 +100,13 @@ Format the response clearly and cleanly for a mobile cooking app.`,
       console.log(error);
 
       res.status(500).json({
-        error:
-          "Image analysis failed",
+        error: error.message,
       });
 
     }
 
   }
+
 );
 
 app.listen(3001, () => {
