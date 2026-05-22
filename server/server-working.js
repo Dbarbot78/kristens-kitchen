@@ -51,7 +51,19 @@ app.post(
                   type: "text",
 
                   text:
-                    "Identify food ingredients in this image. Return ONLY a comma separated list.",
+  `You are a professional chef AI.
+
+Identify all ingredients visible in this food image.
+
+Then create:
+1. Recipe name
+2. Short description
+3. Ingredient list
+4. Step-by-step cooking instructions
+5. Estimated cooking time
+6. Difficulty level
+
+Format the response clearly and cleanly for a mobile cooking app.`,
                 },
 
                 {
