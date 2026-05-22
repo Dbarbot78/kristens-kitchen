@@ -39,6 +39,8 @@ app.post(
         req.file.path;
 const preference =
   req.body.preference;
+  const chefPersonality =
+  req.body.chefPersonality;
       const base64Image =
         fs.readFileSync(imagePath, {
           encoding: "base64",
@@ -64,6 +66,8 @@ const preference =
 
 The user wants:
 ${preference} style recipes.
+Respond with the personality and cooking style of:
+${chefPersonality}
 
 Identify all ingredients visible in this food image.
 
@@ -71,9 +75,11 @@ Then create:
 1. Recipe name
 2. Short description
 3. Ingredient list
-4. Step-by-step cooking instructions
-5. Estimated cooking time
-6. Difficulty level
+4. Missing ingredients
+5. Optional ingredient upgrades
+6. Step-by-step cooking instructions
+7. Estimated cooking time
+8. Difficulty level
 
 Optimize the recipe for:
 ${preference}

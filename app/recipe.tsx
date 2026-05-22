@@ -21,7 +21,7 @@ export default function RecipeScreen() {
     >
 
       <Text style={styles.title}>
-        🍳 AI Recipe
+        🥐 AI Recipe
       </Text>
 
       <View style={styles.recipeCard}>

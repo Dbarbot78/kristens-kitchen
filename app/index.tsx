@@ -28,6 +28,8 @@ export default function HomeScreen() {
     useState(false);
     const [preference, setPreference] =
   useState("Healthy");
+  const [chefPersonality, setChefPersonality] =
+  useState("Cozy Bakery Chef");
 
   async function openCamera() {
 
@@ -71,6 +73,10 @@ export default function HomeScreen() {
   "preference",
   preference
 ); 
+formData.append(
+  "chefPersonality",
+  chefPersonality
+);
 
         formData.append("image", {
 
@@ -134,14 +140,55 @@ Alert.alert(
     >
 
       <Text style={styles.title}>
-        Kristen’s Kitchen 🍳
+        Kristen’s Kitchen 🥐
       </Text>
 
       <Text style={styles.subtitle}>
         Make meals from what you already have.
       </Text>
       <View style={styles.filterRow}>
+<View style={styles.filterRow}>
 
+  <TouchableOpacity
+    style={styles.filterButton}
+    onPress={() =>
+      setChefPersonality(
+        "Cozy Bakery Chef"
+      )
+    }
+  >
+    <Text style={styles.filterText}>
+      🥐 Bakery
+    </Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={styles.filterButton}
+    onPress={() =>
+      setChefPersonality(
+        "Cajun Grandma"
+      )
+    }
+  >
+    <Text style={styles.filterText}>
+      🔥 Cajun
+    </Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={styles.filterButton}
+    onPress={() =>
+      setChefPersonality(
+        "Gym Bro Chef"
+      )
+    }
+  >
+    <Text style={styles.filterText}>
+      💪 Gym
+    </Text>
+  </TouchableOpacity>
+
+</View>
   <TouchableOpacity
     style={styles.filterButton}
     onPress={() =>
