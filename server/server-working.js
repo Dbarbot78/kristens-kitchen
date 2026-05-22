@@ -1,20 +1,9 @@
 require("dotenv").config();
 
-console.log(
-  "API KEY:",
-  process.env.OPENAI_API_KEY
-);
-
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
-
-console.log(
-  "API KEY:",
-  process.env.OPENAI_API_KEY
-);
-
 const OpenAI = require("openai");
 
 const app = express();
@@ -26,9 +15,9 @@ const upload = multer({
 });
 
 const openai = new OpenAI({
-  apiKey:
-    "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
+
 app.post(
   "/analyze-image",
 
