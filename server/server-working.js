@@ -17,6 +17,13 @@ const upload = multer({
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+app.get("/", (req, res) => {
+
+  res.send(
+    "Kristen's Kitchen backend running 🚀"
+  );
+
+});
 
 app.post(
 
@@ -94,7 +101,6 @@ Format the response clearly and cleanly for a mobile cooking app.`,
       res.json({
         recipe,
       });
-
     } catch (error) {
 
       console.log(error);
