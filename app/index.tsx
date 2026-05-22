@@ -26,6 +26,8 @@ export default function HomeScreen() {
 
   const [loading, setLoading] =
     useState(false);
+    const [preference, setPreference] =
+  useState("Healthy");
 
   async function openCamera() {
 
@@ -65,6 +67,10 @@ export default function HomeScreen() {
 
         const formData =
           new FormData();
+         formData.append(
+  "preference",
+  preference
+); 
 
         formData.append("image", {
 
@@ -95,11 +101,7 @@ export default function HomeScreen() {
 
         const data =
           await response.json();
-         Alert.alert(
-  "DEBUG",
-  JSON.stringify(data)
-); 
-
+        
         setRecipe(data.recipe || data.ingredients);
 router.push({
   pathname: "/recipe",
@@ -138,6 +140,42 @@ Alert.alert(
       <Text style={styles.subtitle}>
         Make meals from what you already have.
       </Text>
+      <View style={styles.filterRow}>
+
+  <TouchableOpacity
+    style={styles.filterButton}
+    onPress={() =>
+      setPreference("Healthy")
+    }
+  >
+    <Text style={styles.filterText}>
+      Healthy
+    </Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={styles.filterButton}
+    onPress={() =>
+      setPreference("High Protein")
+    }
+  >
+    <Text style={styles.filterText}>
+      Protein
+    </Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity
+    style={styles.filterButton}
+    onPress={() =>
+      setPreference("Quick Meals")
+    }
+  >
+    <Text style={styles.filterText}>
+      Quick
+    </Text>
+  </TouchableOpacity>
+
+</View>
 
       <TouchableOpacity
         style={styles.button}
@@ -299,5 +337,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#5F6F65",
   },
+  filterRow: {
+    flexDirection: "row",
+    marginBottom: 25,
+    gap: 10,
+  },
 
+  filterButton: {
+    backgroundColor: "#DDEBDD",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+  },
+
+  filterText: {
+    color: "#2E4A3D",
+    fontWeight: "600",
+  },
 });

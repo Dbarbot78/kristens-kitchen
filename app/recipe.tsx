@@ -27,9 +27,13 @@ export default function RecipeScreen() {
       <View style={styles.recipeCard}>
 
         <Text style={styles.recipeText}>
-  {JSON.stringify(recipe)}
+  {recipe
+    ?.toString()
+    .replace(/\\n/g, "\n")
+    .replace(/###/g, "")
+    .replace(/\*\*/g, "")
+  }
 </Text>
-
       </View>
 
     </ScrollView>

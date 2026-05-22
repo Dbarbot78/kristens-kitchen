@@ -37,7 +37,8 @@ app.post(
 
       const imagePath =
         req.file.path;
-
+const preference =
+  req.body.preference;
       const base64Image =
         fs.readFileSync(imagePath, {
           encoding: "base64",
@@ -61,6 +62,9 @@ app.post(
                   text:
 `You are a professional chef AI.
 
+The user wants:
+${preference} style recipes.
+
 Identify all ingredients visible in this food image.
 
 Then create:
@@ -71,9 +75,11 @@ Then create:
 5. Estimated cooking time
 6. Difficulty level
 
+Optimize the recipe for:
+${preference}
+
 Format the response clearly and cleanly for a mobile cooking app.`,
                 },
-
                 {
                   type: "image_url",
 
