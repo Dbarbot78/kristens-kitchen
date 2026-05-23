@@ -17,6 +17,7 @@ const upload = multer({
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
 app.get("/", (req, res) => {
 
   res.send(
@@ -37,10 +38,13 @@ app.post(
 
       const imagePath =
         req.file.path;
-const preference =
-  req.body.preference;
-  const chefPersonality =
-  req.body.chefPersonality;
+
+      const preference =
+        req.body.preference;
+
+      const chefPersonality =
+        req.body.chefPersonality;
+
       const base64Image =
         fs.readFileSync(imagePath, {
           encoding: "base64",
@@ -66,26 +70,32 @@ const preference =
 
 The user wants:
 ${preference} style recipes.
+
 Respond with the personality and cooking style of:
 ${chefPersonality}
 
 Identify all ingredients visible in this food image.
 
-Then create:
-1. Recipe name
-2. Short description
-3. Ingredient list
-4. Missing ingredients
-5. Optional ingredient upgrades
-6. Step-by-step cooking instructions
-7. Estimated cooking time
-8. Difficulty level
+Return ONLY valid JSON.
 
-Optimize the recipe for:
-${preference}
+Use this exact structure:
 
-Format the response clearly and cleanly for a mobile cooking app.`,
+{
+  "title": "",
+  "description": "",
+  "time": "",
+  "difficulty": "",
+  "ingredients": [],
+  "instructions": [],
+  "missingIngredients": [],
+  "optionalUpgrades": []
+}
+
+Do not include markdown.
+Do not include explanation text.
+Only return valid JSON.`,
                 },
+
                 {
                   type: "image_url",
 
@@ -113,6 +123,7 @@ Format the response clearly and cleanly for a mobile cooking app.`,
       res.json({
         recipe,
       });
+
     } catch (error) {
 
       console.log(error);

@@ -152,6 +152,18 @@ export default function HomeScreen() {
       </Text>
 
       <Text style={styles.subtitle}>
+        <TouchableOpacity
+  style={styles.savedButton}
+  onPress={() =>
+    router.push("/saved")
+  }
+>
+
+  <Text style={styles.savedButtonText}>
+    ❤️ View Saved Recipes
+  </Text>
+
+</TouchableOpacity>
         Make meals from what you already have.
       </Text>
 
@@ -355,27 +367,29 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
 
   container: {
-    flexGrow: 1,
-    backgroundColor: "#F4F8F2",
-    alignItems: "center",
-    paddingTop: 100,
-    paddingHorizontal: 20,
-    paddingBottom: 100,
-  },
+  flexGrow: 1,
+  backgroundColor: "#FAF7F2",
+  alignItems: "center",
+  paddingTop: 90,
+  paddingHorizontal: 20,
+  paddingBottom: 120,
+},
 
   title: {
-    fontSize: 36,
-    fontWeight: "bold",
-    color: "#2E4A3D",
-    marginBottom: 10,
-  },
+  fontSize: 42,
+  fontWeight: "800",
+  color: "#2E4A3D",
+  marginBottom: 12,
+  textAlign: "center",
+},
 
   subtitle: {
-    fontSize: 18,
-    color: "#5F6F65",
-    textAlign: "center",
-    marginBottom: 40,
-  },
+  fontSize: 18,
+  color: "#6D7C73",
+  textAlign: "center",
+  marginBottom: 30,
+  lineHeight: 28,
+},
 
   filterRow: {
     flexDirection: "row",
@@ -402,13 +416,22 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: "#4D7C5A",
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 20,
-    marginBottom: 40,
-    marginTop: 20,
+  backgroundColor: "#4D7C5A",
+  paddingVertical: 18,
+  paddingHorizontal: 36,
+  borderRadius: 30,
+  marginBottom: 45,
+
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 6,
   },
+  shadowOpacity: 0.15,
+  shadowRadius: 10,
+
+  elevation: 8,
+},
 
   buttonText: {
     color: "white",
@@ -417,19 +440,29 @@ const styles = StyleSheet.create({
   },
 
   previewImage: {
-    width: "100%",
-    height: 250,
-    borderRadius: 20,
-    marginBottom: 20,
-  },
+  width: "100%",
+  height: 260,
+  borderRadius: 30,
+  marginBottom: 24,
+},
 
   card: {
-    width: "100%",
-    backgroundColor: "white",
-    padding: 20,
-    borderRadius: 20,
-    marginBottom: 20,
+  width: "100%",
+  backgroundColor: "white",
+  padding: 24,
+  borderRadius: 28,
+  marginBottom: 24,
+
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 5,
   },
+  shadowOpacity: 0.08,
+  shadowRadius: 10,
+
+  elevation: 5,
+},
 
   cardTitle: {
     fontSize: 20,
@@ -442,5 +475,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#5F6F65",
   },
+  savedButton: {
+    backgroundColor: "#E07A7A",
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    marginBottom: 25,
+  },
 
+  savedButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
