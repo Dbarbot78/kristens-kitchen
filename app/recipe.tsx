@@ -1,16 +1,16 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
-    useLocalSearchParams,
+  useLocalSearchParams,
 } from "expo-router";
 
 import {
-    Alert,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function RecipeScreen() {
@@ -35,7 +35,7 @@ export default function RecipeScreen() {
         ? JSON.parse(existingRecipes)
         : [];
 
-    parsedRecipes.push(recipe);
+    parsedRecipes.push(parsedRecipe);
 
     await AsyncStorage.setItem(
       "savedRecipes",

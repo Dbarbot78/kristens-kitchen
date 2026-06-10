@@ -1,25 +1,22 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import { useFocusEffect } from "expo-router";
 import {
-    useFocusEffect,
-} from "expo-router";
-
-import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 
 import {
-    useCallback,
-    useState,
+  useCallback,
+  useState,
 } from "react";
+import BackButton from "./components/BackButton";
 
 export default function SavedScreen() {
 
   const [savedRecipes, setSavedRecipes] =
-    useState<string[]>([]);
+    useState<any[]>([]);
 
   useFocusEffect(
 
@@ -51,29 +48,49 @@ export default function SavedScreen() {
   return (
 
     <ScrollView
-      contentContainerStyle={styles.container}
+  contentContainerStyle={styles.container}
+>
+
+ <View
+  style={{
+    width: "100%",
+    marginBottom: 20,
+  }}
+>
+  <BackButton />
+</View>
+  <Text style={styles.title}>
+    ❤️ Saved Recipes
+  </Text>
+
+     {savedRecipes.map(
+  (recipe, index) => (
+
+    <View
+      key={index}
+      style={styles.recipeCard}
     >
 
-      <Text style={styles.title}>
-        ❤️ Saved Recipes
+      <Text style={styles.recipeTitle}>
+        {recipe.title}
       </Text>
 
-      {savedRecipes.map(
-        (recipe, index) => (
+      <Text style={styles.recipeText}>
+        {recipe.description}
+      </Text>
 
-          <View
-            key={index}
-            style={styles.recipeCard}
-          >
+      <Text style={styles.recipeMeta}>
+        ⏱ {recipe.time}
+      </Text>
 
-            <Text style={styles.recipeText}>
-              {recipe}
-            </Text>
+      <Text style={styles.recipeMeta}>
+        🔥 {recipe.difficulty}
+      </Text>
 
-          </View>
+    </View>
 
-        )
-      )}
+  )
+)} 
 
     </ScrollView>
 
@@ -111,5 +128,17 @@ const styles = StyleSheet.create({
     color: "#4B5B52",
     lineHeight: 28,
   },
+  recipeTitle: {
+  fontSize: 22,
+  fontWeight: "bold",
+  color: "#2E4A3D",
+  marginBottom: 8,
+},
+
+recipeMeta: {
+  fontSize: 14,
+  color: "#666",
+  marginTop: 4,
+},
 
 });
